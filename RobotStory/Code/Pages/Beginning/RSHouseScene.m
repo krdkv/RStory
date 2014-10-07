@@ -23,7 +23,7 @@
 {
     self.backgroundImageName = @"house";
     self.backgroundImageType = @"jpg";
-    [self displayPageCornerWithCurlName:@"gears_curl" withDelay:0.f];
+    [self displayPageCornerWithCurlName:@"gears_curl" withDelay:0.3f];
     
     RSNoteView * noteView = [[RSNoteView alloc] initWithFrame:CGRectMake(100.f, 200.f, 300.f, 200.f)];
     [noteView setTitle:@"Robot"];
@@ -35,10 +35,6 @@
 
 - (RSPage*) nextPage {
     return [RSRobotCreationScene new];
-}
-
-- (RSPage*) previousPage {
-    return nil;
 }
 
 @end

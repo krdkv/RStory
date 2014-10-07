@@ -10,4 +10,21 @@
 
 @implementation RSStyle
 
++ (CGRect)screenBoundsFixedToPortraitOrientation {
+    UIScreen *screen = [UIScreen mainScreen];
+    
+    if ([screen respondsToSelector:@selector(fixedCoordinateSpace)]) {
+        return [screen.coordinateSpace convertRect:screen.bounds toCoordinateSpace:screen.fixedCoordinateSpace];
+    }
+    return screen.bounds;
+}
+
++ (CGFloat)screenWidth {
+    return [RSStyle screenBoundsFixedToPortraitOrientation].size.height;
+}
+
++ (CGFloat)screenHeight {
+    return [RSStyle screenBoundsFixedToPortraitOrientation].size.width;
+}
+
 @end

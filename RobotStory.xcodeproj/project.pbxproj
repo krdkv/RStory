@@ -40,6 +40,20 @@
 		01BBBCD519C25A8F0090923A /* legs1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BBBCC919C25A8F0090923A /* legs1.png */; };
 		01BBBCD619C25A8F0090923A /* legs2.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BBBCCA19C25A8F0090923A /* legs2.png */; };
 		01BBBCD719C25A8F0090923A /* legs3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BBBCCB19C25A8F0090923A /* legs3.png */; };
+		01C2395019E4AC7C009D7891 /* eyes0_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394819E4AC7C009D7891 /* eyes0_1.png */; };
+		01C2395119E4AC7C009D7891 /* eyes0.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394919E4AC7C009D7891 /* eyes0.png */; };
+		01C2395219E4AC7C009D7891 /* eyes1_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394A19E4AC7C009D7891 /* eyes1_1.png */; };
+		01C2395319E4AC7C009D7891 /* eyes1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394B19E4AC7C009D7891 /* eyes1.png */; };
+		01C2395419E4AC7C009D7891 /* eyes2_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394C19E4AC7C009D7891 /* eyes2_1.png */; };
+		01C2395519E4AC7C009D7891 /* eyes2.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394D19E4AC7C009D7891 /* eyes2.png */; };
+		01C2395619E4AC7C009D7891 /* eyes3_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394E19E4AC7C009D7891 /* eyes3_1.png */; };
+		01C2395719E4AC7C009D7891 /* eyes3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C2394F19E4AC7C009D7891 /* eyes3.png */; };
+		01C6308A19E1E97A000204D4 /* RSMapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C6308919E1E97A000204D4 /* RSMapScene.m */; };
+		01C6308C19E1EB84000204D4 /* map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01C6308B19E1EB84000204D4 /* map.jpg */; };
+		01C6308F19E1EE67000204D4 /* map_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C6308D19E1EE67000204D4 /* map_curl.png */; };
+		01C6309019E1EE67000204D4 /* map_curl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C6308E19E1EE67000204D4 /* map_curl@2x.png */; };
+		01C6309319E1EFCF000204D4 /* RSCaveEnterScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C6309219E1EFCF000204D4 /* RSCaveEnterScene.m */; };
+		01C6309619E1F1C0000204D4 /* RSSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C6309519E1F1C0000204D4 /* RSSettingsManager.m */; };
 		01E1A99919DDD89500AA5FD4 /* gears_curl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E1A99819DDD89500AA5FD4 /* gears_curl@2x.png */; };
 		01E1A99B19DDE46200AA5FD4 /* gears_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E1A99A19DDE46200AA5FD4 /* gears_curl.png */; };
 		01E1A99E19DE14DD00AA5FD4 /* curlShape.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E1A99C19DE14DD00AA5FD4 /* curlShape.png */; };
@@ -118,6 +132,23 @@
 		01BBBCC919C25A8F0090923A /* legs1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs1.png; sourceTree = "<group>"; };
 		01BBBCCA19C25A8F0090923A /* legs2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs2.png; sourceTree = "<group>"; };
 		01BBBCCB19C25A8F0090923A /* legs3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs3.png; sourceTree = "<group>"; };
+		01C2394819E4AC7C009D7891 /* eyes0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes0_1.png; sourceTree = "<group>"; };
+		01C2394919E4AC7C009D7891 /* eyes0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes0.png; sourceTree = "<group>"; };
+		01C2394A19E4AC7C009D7891 /* eyes1_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes1_1.png; sourceTree = "<group>"; };
+		01C2394B19E4AC7C009D7891 /* eyes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes1.png; sourceTree = "<group>"; };
+		01C2394C19E4AC7C009D7891 /* eyes2_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes2_1.png; sourceTree = "<group>"; };
+		01C2394D19E4AC7C009D7891 /* eyes2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes2.png; sourceTree = "<group>"; };
+		01C2394E19E4AC7C009D7891 /* eyes3_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes3_1.png; sourceTree = "<group>"; };
+		01C2394F19E4AC7C009D7891 /* eyes3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyes3.png; sourceTree = "<group>"; };
+		01C6308819E1E97A000204D4 /* RSMapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMapScene.h; sourceTree = "<group>"; };
+		01C6308919E1E97A000204D4 /* RSMapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMapScene.m; sourceTree = "<group>"; };
+		01C6308B19E1EB84000204D4 /* map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = map.jpg; sourceTree = "<group>"; };
+		01C6308D19E1EE67000204D4 /* map_curl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_curl.png; sourceTree = "<group>"; };
+		01C6308E19E1EE67000204D4 /* map_curl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_curl@2x.png"; sourceTree = "<group>"; };
+		01C6309119E1EFCF000204D4 /* RSCaveEnterScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCaveEnterScene.h; sourceTree = "<group>"; };
+		01C6309219E1EFCF000204D4 /* RSCaveEnterScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCaveEnterScene.m; sourceTree = "<group>"; };
+		01C6309419E1F1C0000204D4 /* RSSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSettingsManager.h; sourceTree = "<group>"; };
+		01C6309519E1F1C0000204D4 /* RSSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSettingsManager.m; sourceTree = "<group>"; };
 		01E1A99819DDD89500AA5FD4 /* gears_curl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gears_curl@2x.png"; sourceTree = "<group>"; };
 		01E1A99A19DDE46200AA5FD4 /* gears_curl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears_curl.png; sourceTree = "<group>"; };
 		01E1A99C19DE14DD00AA5FD4 /* curlShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = curlShape.png; sourceTree = "<group>"; };
@@ -182,6 +213,8 @@
 				01E1A9A119DE182300AA5FD4 /* RSNoteView.m */,
 				01E1A9A919DE1B5600AA5FD4 /* RSAudioManager.h */,
 				01E1A9AA19DE1B5600AA5FD4 /* RSAudioManager.m */,
+				01C6309419E1F1C0000204D4 /* RSSettingsManager.h */,
+				01C6309519E1F1C0000204D4 /* RSSettingsManager.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -206,6 +239,8 @@
 				0133398819B13EB800882DF6 /* RSHouseScene.m */,
 				0133398A19B1418300882DF6 /* RSRobotCreationScene.h */,
 				0133398B19B1418300882DF6 /* RSRobotCreationScene.m */,
+				01C6308819E1E97A000204D4 /* RSMapScene.h */,
+				01C6308919E1E97A000204D4 /* RSMapScene.m */,
 			);
 			path = Beginning;
 			sourceTree = "<group>";
@@ -220,6 +255,8 @@
 		0133398519B13E9F00882DF6 /* Cave */ = {
 			isa = PBXGroup;
 			children = (
+				01C6309119E1EFCF000204D4 /* RSCaveEnterScene.h */,
+				01C6309219E1EFCF000204D4 /* RSCaveEnterScene.m */,
 			);
 			path = Cave;
 			sourceTree = "<group>";
@@ -327,6 +364,7 @@
 		01BBBCB919C2564C0090923A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				01C6308B19E1EB84000204D4 /* map.jpg */,
 				01E1A99719DDD89500AA5FD4 /* Curls */,
 				01E1E08519D21F1800EECD57 /* curl.png */,
 				01E1E08619D21F1800EECD57 /* curl@2x.png */,
@@ -340,6 +378,14 @@
 		01BBBCBF19C25A8F0090923A /* Robot large */ = {
 			isa = PBXGroup;
 			children = (
+				01C2394819E4AC7C009D7891 /* eyes0_1.png */,
+				01C2394919E4AC7C009D7891 /* eyes0.png */,
+				01C2394A19E4AC7C009D7891 /* eyes1_1.png */,
+				01C2394B19E4AC7C009D7891 /* eyes1.png */,
+				01C2394C19E4AC7C009D7891 /* eyes2_1.png */,
+				01C2394D19E4AC7C009D7891 /* eyes2.png */,
+				01C2394E19E4AC7C009D7891 /* eyes3_1.png */,
+				01C2394F19E4AC7C009D7891 /* eyes3.png */,
 				01BBBCC019C25A8F0090923A /* body0.png */,
 				01BBBCC119C25A8F0090923A /* body1.png */,
 				01BBBCC219C25A8F0090923A /* body2.png */,
@@ -359,6 +405,8 @@
 		01E1A99719DDD89500AA5FD4 /* Curls */ = {
 			isa = PBXGroup;
 			children = (
+				01C6308D19E1EE67000204D4 /* map_curl.png */,
+				01C6308E19E1EE67000204D4 /* map_curl@2x.png */,
 				01E1A99C19DE14DD00AA5FD4 /* curlShape.png */,
 				01E1A99D19DE14DD00AA5FD4 /* curlShape@2x.png */,
 				01E1A99A19DDE46200AA5FD4 /* gears_curl.png */,
@@ -473,8 +521,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E1A9C719DE25D900AA5FD4 /* ship.caf in Resources */,
+				01C2395619E4AC7C009D7891 /* eyes3_1.png in Resources */,
 				01E1A9C419DE25D900AA5FD4 /* rchange_6.caf in Resources */,
+				01C6308F19E1EE67000204D4 /* map_curl.png in Resources */,
 				01E1A9BE19DE25D900AA5FD4 /* rchange_0.caf in Resources */,
+				01C2395019E4AC7C009D7891 /* eyes0_1.png in Resources */,
 				01E1A9BF19DE25D900AA5FD4 /* rchange_1.caf in Resources */,
 				01BBBCCD19C25A8F0090923A /* body1.png in Resources */,
 				01E1A9C019DE25D900AA5FD4 /* rchange_2.caf in Resources */,
@@ -488,7 +539,10 @@
 				01E1A9BB19DE25D900AA5FD4 /* castle.caf in Resources */,
 				01B77E63199040E6009752A9 /* InfoPlist.strings in Resources */,
 				01E1A9BC19DE25D900AA5FD4 /* cave.caf in Resources */,
+				01C2395719E4AC7C009D7891 /* eyes3.png in Resources */,
+				01C2395419E4AC7C009D7891 /* eyes2_1.png in Resources */,
 				01BBBCD219C25A8F0090923A /* head2.png in Resources */,
+				01C2395319E4AC7C009D7891 /* eyes1.png in Resources */,
 				01BBBCCC19C25A8F0090923A /* body0.png in Resources */,
 				01BBBCCE19C25A8F0090923A /* body2.png in Resources */,
 				01E1A9C319DE25D900AA5FD4 /* rchange_5.caf in Resources */,
@@ -496,18 +550,23 @@
 				01E1E08819D21F1800EECD57 /* curl@2x.png in Resources */,
 				01BBBCD619C25A8F0090923A /* legs2.png in Resources */,
 				01BBBCBD19C2564C0090923A /* house.jpg in Resources */,
+				01C6308C19E1EB84000204D4 /* map.jpg in Resources */,
 				01E1A9C519DE25D900AA5FD4 /* rchange_7.caf in Resources */,
 				01E1E08719D21F1800EECD57 /* curl.png in Resources */,
+				01C6309019E1EE67000204D4 /* map_curl@2x.png in Resources */,
 				01BBBCD719C25A8F0090923A /* legs3.png in Resources */,
 				01BBBCBC19C2564C0090923A /* gears.jpg in Resources */,
 				01BBBCD019C25A8F0090923A /* head0.png in Resources */,
 				01BBBCD119C25A8F0090923A /* head1.png in Resources */,
+				01C2395119E4AC7C009D7891 /* eyes0.png in Resources */,
 				01E1A9C619DE25D900AA5FD4 /* rchange_8.caf in Resources */,
 				01E1A9BD19DE25D900AA5FD4 /* robot_down.caf in Resources */,
 				01E1A99F19DE14DD00AA5FD4 /* curlShape@2x.png in Resources */,
 				01B77E6C199040E6009752A9 /* Main.storyboard in Resources */,
 				01BBBCD519C25A8F0090923A /* legs1.png in Resources */,
 				01E1A99E19DE14DD00AA5FD4 /* curlShape.png in Resources */,
+				01C2395519E4AC7C009D7891 /* eyes2.png in Resources */,
+				01C2395219E4AC7C009D7891 /* eyes1_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,13 +586,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E1A9A519DE18D400AA5FD4 /* UIView+draggable.m in Sources */,
+				01C6309319E1EFCF000204D4 /* RSCaveEnterScene.m in Sources */,
 				01E1A9A219DE182300AA5FD4 /* RSNoteView.m in Sources */,
 				01E1A9AB19DE1B5600AA5FD4 /* RSAudioManager.m in Sources */,
 				01B77E65199040E6009752A9 /* main.m in Sources */,
+				01C6309619E1F1C0000204D4 /* RSSettingsManager.m in Sources */,
 				01B77E9B199192FD009752A9 /* RSPage.m in Sources */,
 				0122466B19C8DA5B001EBB46 /* RSStyle.m in Sources */,
 				0133398C19B1418300882DF6 /* RSRobotCreationScene.m in Sources */,
 				01B77E69199040E6009752A9 /* RSAppDelegate.m in Sources */,
+				01C6308A19E1E97A000204D4 /* RSMapScene.m in Sources */,
 				0133398919B13EB800882DF6 /* RSHouseScene.m in Sources */,
 				0122466719C8D9C3001EBB46 /* MCSpriteLayer.m in Sources */,
 				01B77E6F199040E6009752A9 /* RSViewController.m in Sources */,

@@ -11,9 +11,12 @@
 #define OS_VERSION_EQUALS_OR_AFTER(version) [[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."][0] intValue] >= version
 #define OS_VERSION_BEFORE(version) [[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."][0] intValue] < version
 
-#define kScreenWidth     [UIScreen mainScreen].bounds.size.height
-#define kScreenHeight    [UIScreen mainScreen].bounds.size.width
-
 @interface RSStyle : NSObject
+
++ (CGRect)screenBoundsFixedToPortraitOrientation;
+
++ (CGFloat)screenWidth;
+
++ (CGFloat)screenHeight;
 
 @end

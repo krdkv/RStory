@@ -11,7 +11,7 @@
 #import "RSHouseScene.h"
 #import "RSRobotCreationScene.h"
 
-@interface RSViewController ()
+@interface RSViewController ()<RSPageDelegate>
 
 @property (nonatomic, strong) UIPageViewController * pageViewController;
 @property (nonatomic, strong) RSPage * currentPage;
@@ -33,6 +33,7 @@
     }
     
     _currentPage = [[RSHouseScene alloc] init];
+    _currentPage.delegate = self;
     
     NSArray *viewControllers = @[_currentPage];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -44,18 +45,22 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
+    [_currentPage shouldJumpToPreviousPage];
     RSPage * newPage = [_currentPage previousPage];
     if ( newPage ) {
         _currentPage = newPage;
+        _currentPage.delegate = self;
     }
     return newPage;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
+    [_currentPage shouldJumpToNextPage];
     RSPage * newPage = [_currentPage nextPage];
     if ( newPage ) {
         _currentPage = newPage;
+        _currentPage.delegate = self;
     }
     return newPage;
 }
@@ -64,6 +69,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark RSPageDelegate
+
+- (void) shouldJumpToNextPage:(RSPage *)page {
+    _currentPage = page;
+    [self.pageViewController setViewControllers:@[page] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
 
 @end

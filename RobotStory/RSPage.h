@@ -9,18 +9,26 @@
 #import <UIKit/UIKit.h>
 @class RSPage;
 
-@protocol RSPageNavigationDelegate <NSObject>
+@protocol RSPageDelegate
 
-- (RSPage*) nextPage;
-- (RSPage*) previousPage;
+- (void) shouldJumpToNextPage:(RSPage*)page;
 
 @end
 
-@interface RSPage : UIViewController<RSPageNavigationDelegate>
+@interface RSPage : UIViewController<NSObject>
 
 @property (nonatomic, weak) NSString * backgroundImageName;
 @property (nonatomic, weak) NSString * backgroundImageType;
 
+@property (nonatomic, weak) id<RSPageDelegate> delegate;
+
 - (void) displayPageCornerWithCurlName:(NSString*)curlName withDelay:(CGFloat)delay;
+- (void) hidePageCorner;
+
+- (RSPage*) nextPage;
+- (RSPage*) previousPage;
+
+- (void) shouldJumpToNextPage;
+- (void) shouldJumpToPreviousPage;
 
 @end

@@ -9,11 +9,10 @@
 #import "RSRobotCreationScene.h"
 #import "RSHouseScene.h"
 #import "RSStyle.h"
+#import "RSMapScene.h"
+#import "RSSettingsManager.h"
 
 #define kNumberOfRobotParts 4
-
-#define kScrollViewDefaultWidth kScreenWidth
-#define kScrollViewDefaultHeight 233.f
 
 #define kScrollHeights @[@196.f, @233.f, @198.f]
 
@@ -23,10 +22,16 @@
 @property (nonatomic, strong) UIScrollView * bodyScrollView;
 @property (nonatomic, strong) UIScrollView * legsScrollView;
 @property (nonatomic, strong) NSMutableArray * selectedParts;
+@property (nonatomic, assign) NSInteger state;
 
 @end
 
 @implementation RSRobotCreationScene
+
+enum {
+    kRobotCreation = 0,
+    kRobotNaming
+};
 
 - (UIScrollView*) scrollViewWithFrame:(CGRect)frame scrollViewIndex:(NSInteger)index{
     UIScrollView * scrollView;
@@ -68,25 +73,39 @@
 
 - (void)viewDidLoad
 {
+    [self displayPageCornerWithCurlName:@"map_curl" withDelay:0.3f];
+    
+    _state = kRobotCreation;
+    
     _selectedParts = [[NSMutableArray alloc] initWithArray:@[@0, @0, @0]];
     
     CGFloat scrollViewTotalHeight = [kScrollHeights[0] floatValue] + [kScrollHeights[1] floatValue] + [kScrollHeights[2] floatValue];
     
-    CGFloat x = (kScreenWidth - kScrollViewDefaultWidth)/2.f;
-    CGFloat y = (kScreenHeight - scrollViewTotalHeight) / 2;
+    CGFloat x = 0.f;
+    CGFloat y = ([RSStyle screenHeight] - scrollViewTotalHeight) / 2;
     CGRect scrollViewFrame;
     
-    scrollViewFrame = CGRectMake(x, y, kScrollViewDefaultWidth, [kScrollHeights[0] floatValue]);
+    scrollViewFrame = CGRectMake(x, y, [RSStyle screenWidth], [kScrollHeights[0] floatValue]);
     _headScrollView = [self scrollViewWithFrame:scrollViewFrame scrollViewIndex:0];
     [self.view addSubview:_headScrollView];
 
-    scrollViewFrame = CGRectMake(x, y + [kScrollHeights[0] floatValue] - 0.5f, kScrollViewDefaultWidth, [kScrollHeights[1] floatValue]);
+    scrollViewFrame = CGRectMake(x, y + [kScrollHeights[0] floatValue] - 0.5f, [RSStyle screenWidth], [kScrollHeights[1] floatValue]);
     _bodyScrollView = [self scrollViewWithFrame:scrollViewFrame scrollViewIndex:1];
     [self.view addSubview:_bodyScrollView];
 
-    scrollViewFrame = CGRectMake(x, y + [kScrollHeights[0] floatValue] + [kScrollHeights[1] floatValue] - 0.5f, kScrollViewDefaultWidth, [kScrollHeights[2] floatValue]);
+    scrollViewFrame = CGRectMake(x, y + [kScrollHeights[0] floatValue] + [kScrollHeights[1] floatValue] - 0.5f, [RSStyle screenWidth], [kScrollHeights[2] floatValue]);
     _legsScrollView = [self scrollViewWithFrame:scrollViewFrame scrollViewIndex:2];
     [self.view addSubview:_legsScrollView];
+    
+    if ( [RSSettingsManager objectForKey:kRobotHead] ) {
+        [_headScrollView setContentOffset:CGPointMake(([[RSSettingsManager objectForKey:kRobotHead] intValue]+1)*_headScrollView.frame.size.width, 0.f) animated:YES];
+    }
+    if ( [RSSettingsManager objectForKey:kRobotBody] ) {
+        [_bodyScrollView setContentOffset:CGPointMake(([[RSSettingsManager objectForKey:kRobotBody] intValue]+1)*_bodyScrollView.frame.size.width, 0.f) animated:YES];
+    }
+    if ( [RSSettingsManager objectForKey:kRobotLegs] ) {
+        [_legsScrollView setContentOffset:CGPointMake(([[RSSettingsManager objectForKey:kRobotLegs] intValue]+1)*_legsScrollView.frame.size.width, 0.f) animated:YES];
+    }
     
     self.backgroundImageName = @"gears";
     self.backgroundImageType = @"jpg";
@@ -97,6 +116,18 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     int index = scrollView.contentOffset.x / scrollView.frame.size.width;
+    
+    // Saving your choice
+    NSInteger partToSave = (index-1)%kNumberOfRobotParts;
+    partToSave = partToSave == -1 ? kNumberOfRobotParts-1 : partToSave;
+    RSSettingsKey key = kRobotHead;
+    if ( [scrollView isEqual:_bodyScrollView] ) {
+        key = kRobotBody;
+    } else if ( [scrollView isEqual:_legsScrollView] ) {
+        key = kRobotLegs;
+    }
+    [RSSettingsManager setObject:@(partToSave) forKey:key];
+    
     int outIndex = -1;
     
     switch (index) {
@@ -108,8 +139,18 @@
     }
 }
 
+- (void) shouldJumpToNextPage {
+
+}
+
 - (RSPage*)nextPage {
-    return nil;
+    
+//    if ( _state == kRobotCreation ) {
+//        _state = kRobotNaming;
+//        return nil;
+//    }
+    
+    return [RSMapScene new];
 }
 
 - (RSPage*)previousPage {
