@@ -11,12 +11,20 @@
 #import <AVFoundation/AVFoundation.h>
 #import "RSSettingsManager.h"
 #import "RSStyle.h"
+#import "RSCaveAudioSimulator.h"
+#import "MCSpriteLayer.h"
 
 @interface RSCaveEnterScene ()
 
 @property (nonatomic, strong) UIImageView * eyesImageView;
 @property (nonatomic, strong) UIImageView * pupilsImageView;
 @property (nonatomic, assign) NSInteger eyesNumber;
+@property (nonatomic, strong) RSCaveAudioSimulator * caveSimulator;
+
+@property (nonatomic, strong) MCSpriteLayer * kingEyes;
+@property (nonatomic, strong) MCSpriteLayer * tribeEyes1;
+@property (nonatomic, strong) MCSpriteLayer * tribeEyes2;
+@property (nonatomic, strong) MCSpriteLayer * tribeEyes3;
 
 @end
 
@@ -68,11 +76,26 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if ( _eyesNumber != 0 ) {
+            
             [UIView animateWithDuration:1.f animations:^{
                 CGRect frame = _pupilsImageView.frame;
                 frame.origin.x += pupilsShift.x;
                 frame.origin.y += pupilsShift.y;
                 _pupilsImageView.frame = frame;
+            } completion:^(BOOL success){
+                
+                [UIView animateWithDuration:2.f animations:^{
+                    CGRect frame = _pupilsImageView.frame;
+                    frame.origin.y += 250.f;
+                    _pupilsImageView.frame = frame;
+                    
+                    frame = _eyesImageView.frame;
+                    frame.origin.y += 250.f;
+                    _eyesImageView.frame = frame;
+                } completion:^(BOOL finished) {
+                    [self drawEyes];
+                }];
+                
             }];
         } else {
             [UIView animateWithDuration:0.2f animations:^{
@@ -83,14 +106,67 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    
-    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-        if ( _eyesNumber == 0 ) {
-            _pupilsImageView.hidden = YES;
-        }
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+            _caveSimulator = [[RSCaveAudioSimulator alloc] init];
+            [_caveSimulator enterCave];
+        }];
+    });
+
     
     [super viewDidLoad];
+}
+
+- (void) drawEyes {
+    
+    UIImage * image = [UIImage imageNamed:@"kingEyes"];
+    _kingEyes = [MCSpriteLayer layerWithImage:image.CGImage sampleSize:CGSizeMake(image.size.width, image.size.height/3)];
+    _kingEyes.frame = CGRectMake(65.f, 266.f, image.size.width, image.size.height/3);
+    [self.view.layer addSublayer:_kingEyes];
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
+    anim.fromValue = @1;
+    anim.toValue = @4;
+    anim.duration = 0.7f;
+    anim.repeatCount = 1;
+    [_kingEyes addAnimation:anim forKey:nil];
+    
+    image = [UIImage imageNamed:@"tribeEyes"];
+    _tribeEyes1 = [MCSpriteLayer layerWithImage:image.CGImage sampleSize:CGSizeMake(image.size.width, image.size.height/3)];
+    _tribeEyes1.frame = CGRectMake(465.f, 271, image.size.width, image.size.height/3);
+    [self.view.layer addSublayer:_tribeEyes1];
+    anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
+    anim.fromValue = @1;
+    anim.toValue = @4;
+    anim.duration = 0.7f;
+    anim.repeatCount = 1;
+    [_tribeEyes1 addAnimation:anim forKey:nil];
+    
+    _tribeEyes2 = [MCSpriteLayer layerWithImage:image.CGImage sampleSize:CGSizeMake(image.size.width, image.size.height/3)];
+    _tribeEyes2.frame = CGRectMake(660.5f, 275, image.size.width, image.size.height/3);
+    [self.view.layer addSublayer:_tribeEyes2];
+    anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
+    anim.fromValue = @1;
+    anim.toValue = @4;
+    anim.duration = 0.7f;
+    anim.repeatCount = 1;
+    [_tribeEyes2 addAnimation:anim forKey:nil];
+    
+    _tribeEyes3 = [MCSpriteLayer layerWithImage:image.CGImage sampleSize:CGSizeMake(image.size.width, image.size.height/3)];
+    _tribeEyes3.frame = CGRectMake(846.f, 281.f, image.size.width, image.size.height/3);
+    [self.view.layer addSublayer:_tribeEyes3];
+    anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
+    anim.fromValue = @1;
+    anim.toValue = @4;
+    anim.duration = 0.7f;
+    anim.repeatCount = 1;
+    [_tribeEyes3 addAnimation:anim forKey:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    if ( _caveSimulator ) {
+        [_caveSimulator leaveCave];
+        _caveSimulator = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

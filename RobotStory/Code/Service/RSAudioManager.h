@@ -25,7 +25,4 @@
 - (void) stopSoundtrack;
 - (void) setVolumeForSoundtrack;
 
-- (void) enterCave;
-- (void) leaveCave;
-
 @end

@@ -11,6 +11,9 @@
 		0122466B19C8DA5B001EBB46 /* RSStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122466A19C8DA5B001EBB46 /* RSStyle.m */; };
 		0133398919B13EB800882DF6 /* RSHouseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0133398819B13EB800882DF6 /* RSHouseScene.m */; };
 		0133398C19B1418300882DF6 /* RSRobotCreationScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0133398B19B1418300882DF6 /* RSRobotCreationScene.m */; };
+		014D737E19E5E43900770969 /* RSCaveAudioSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 014D737D19E5E43900770969 /* RSCaveAudioSimulator.m */; };
+		014D738119E610DC00770969 /* kingEyes.png in Resources */ = {isa = PBXBuildFile; fileRef = 014D738019E610DC00770969 /* kingEyes.png */; };
+		014D738319E6122C00770969 /* tribeEyes.png in Resources */ = {isa = PBXBuildFile; fileRef = 014D738219E6122C00770969 /* tribeEyes.png */; };
 		01B77E59199040E6009752A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B77E58199040E6009752A9 /* Foundation.framework */; };
 		01B77E5B199040E6009752A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B77E5A199040E6009752A9 /* CoreGraphics.framework */; };
 		01B77E5D199040E6009752A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B77E5C199040E6009752A9 /* UIKit.framework */; };
@@ -97,6 +100,10 @@
 		0133398819B13EB800882DF6 /* RSHouseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHouseScene.m; sourceTree = "<group>"; };
 		0133398A19B1418300882DF6 /* RSRobotCreationScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSRobotCreationScene.h; sourceTree = "<group>"; };
 		0133398B19B1418300882DF6 /* RSRobotCreationScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSRobotCreationScene.m; sourceTree = "<group>"; };
+		014D737C19E5E43900770969 /* RSCaveAudioSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCaveAudioSimulator.h; sourceTree = "<group>"; };
+		014D737D19E5E43900770969 /* RSCaveAudioSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCaveAudioSimulator.m; sourceTree = "<group>"; };
+		014D738019E610DC00770969 /* kingEyes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kingEyes.png; sourceTree = "<group>"; };
+		014D738219E6122C00770969 /* tribeEyes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tribeEyes.png; sourceTree = "<group>"; };
 		01B77E55199040E6009752A9 /* RobotStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobotStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B77E58199040E6009752A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01B77E5A199040E6009752A9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +222,8 @@
 				01E1A9AA19DE1B5600AA5FD4 /* RSAudioManager.m */,
 				01C6309419E1F1C0000204D4 /* RSSettingsManager.h */,
 				01C6309519E1F1C0000204D4 /* RSSettingsManager.m */,
+				014D737C19E5E43900770969 /* RSCaveAudioSimulator.h */,
+				014D737D19E5E43900770969 /* RSCaveAudioSimulator.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -266,6 +275,15 @@
 			children = (
 			);
 			path = Ship;
+			sourceTree = "<group>";
+		};
+		014D737F19E610DC00770969 /* Bats */ = {
+			isa = PBXGroup;
+			children = (
+				014D738219E6122C00770969 /* tribeEyes.png */,
+				014D738019E610DC00770969 /* kingEyes.png */,
+			);
+			path = Bats;
 			sourceTree = "<group>";
 		};
 		01790C6B199A84FA00DDDBE5 /* Code */ = {
@@ -364,6 +382,7 @@
 		01BBBCB919C2564C0090923A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				014D737F19E610DC00770969 /* Bats */,
 				01C6308B19E1EB84000204D4 /* map.jpg */,
 				01E1A99719DDD89500AA5FD4 /* Curls */,
 				01E1E08519D21F1800EECD57 /* curl.png */,
@@ -564,8 +583,10 @@
 				01E1A99F19DE14DD00AA5FD4 /* curlShape@2x.png in Resources */,
 				01B77E6C199040E6009752A9 /* Main.storyboard in Resources */,
 				01BBBCD519C25A8F0090923A /* legs1.png in Resources */,
+				014D738319E6122C00770969 /* tribeEyes.png in Resources */,
 				01E1A99E19DE14DD00AA5FD4 /* curlShape.png in Resources */,
 				01C2395519E4AC7C009D7891 /* eyes2.png in Resources */,
+				014D738119E610DC00770969 /* kingEyes.png in Resources */,
 				01C2395219E4AC7C009D7891 /* eyes1_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -596,6 +617,7 @@
 				0133398C19B1418300882DF6 /* RSRobotCreationScene.m in Sources */,
 				01B77E69199040E6009752A9 /* RSAppDelegate.m in Sources */,
 				01C6308A19E1E97A000204D4 /* RSMapScene.m in Sources */,
+				014D737E19E5E43900770969 /* RSCaveAudioSimulator.m in Sources */,
 				0133398919B13EB800882DF6 /* RSHouseScene.m in Sources */,
 				0122466719C8D9C3001EBB46 /* MCSpriteLayer.m in Sources */,
 				01B77E6F199040E6009752A9 /* RSViewController.m in Sources */,

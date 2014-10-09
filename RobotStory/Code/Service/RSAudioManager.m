@@ -101,14 +101,6 @@
     
 }
 
-- (void) enterCave {
-    
-}
-
-- (void) leaveCave {
-    
-}
-
 #pragma mark AVAudioPlayer
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
