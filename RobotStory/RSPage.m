@@ -57,17 +57,16 @@
         [self.view.layer addSublayer:_curlLayer];
         
         CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
-        anim.fromValue = @1;
+        anim.fromValue = @2;
         anim.toValue = @3;
         anim.duration = 0.1f;
         anim.repeatCount = 1;
         if ( delay == 0.f ) {
-            anim.fromValue = @2;
-            anim.toValue = @2;
-            anim.duration = 0.f;
-            anim.repeatCount = 0;
+//            anim.fromValue = @2;
+//            anim.toValue = @2;
+//            anim.duration = 0.f;
+//            anim.repeatCount = 0;
         }
-        
         
         [_curlLayer addAnimation:anim forKey:nil];
         

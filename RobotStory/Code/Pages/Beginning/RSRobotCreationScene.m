@@ -73,8 +73,6 @@ enum {
 
 - (void)viewDidLoad
 {
-    [self displayPageCornerWithCurlName:@"map_curl" withDelay:0.3f];
-    
     _state = kRobotCreation;
     
     _selectedParts = [[NSMutableArray alloc] initWithArray:@[@0, @0, @0]];
@@ -109,6 +107,8 @@ enum {
     
     self.backgroundImageName = @"gears";
     self.backgroundImageType = @"jpg";
+    
+    [self displayPageCornerWithCurlName:@"map_curl" withDelay:0.3f];
     
     [super viewDidLoad];
 }

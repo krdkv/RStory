@@ -13,4 +13,6 @@
 
 - (void) setTitle:(NSString*)title;
 
+- (void) setX:(CGFloat)x y:(CGFloat)y;
+
 @end

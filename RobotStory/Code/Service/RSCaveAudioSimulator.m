@@ -23,12 +23,30 @@
 
 @implementation RSCaveAudioSimulator
 
++ (RSCaveAudioSimulator*)sharedInstance {
+    static RSCaveAudioSimulator * instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[RSCaveAudioSimulator alloc] init];
+    });
+    return instance;
+}
+
 - (void) enterCave {
+#if TARGET_IPHONE_SIMULATOR
+    return;
+#endif
+    
     [self initAudioSession];
     [self setupGraph];
 }
 
 - (void) leaveCave {
+#if TARGET_IPHONE_SIMULATOR
+    return;
+#endif
+    
+    
     Check(AUGraphStop(_graph));
     
     AUGraphClose(_graph);
@@ -167,18 +185,5 @@
     result = AUGraphStart (_graph);
     NSAssert (result == noErr, @"Unable to start audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
 }
-
-- (void) leaveEchoRoom {
-    Check(AUGraphStop(_graph));
-    
-    AUGraphClose(_graph);
-    DisposeAUGraph(_graph);	// this will also cleanup any listeners that have been registered. If you are using AURemoteIO instead of AUGraph, you should make sure you cleanup that instead
-    
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    NSCheck([session setActive: NO error:&err]);
-    
-    NSCheck([session setCategory:AVAudioSessionCategorySoloAmbient error: &err]);
-}
-
 
 @end

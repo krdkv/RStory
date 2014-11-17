@@ -11,6 +11,8 @@
 
 @interface RSCaveAudioSimulator : NSObject
 
++ (RSCaveAudioSimulator*)sharedInstance;
+
 - (void) enterCave;
 
 - (void) leaveCave;
