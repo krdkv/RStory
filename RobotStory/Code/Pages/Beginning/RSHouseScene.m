@@ -14,11 +14,13 @@
 #import "RSAudioManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "RSSoundtrackPlayer.h"
+#import "RSDreamBubble.h"
 
 @interface RSHouseScene ()
 
 @property (nonatomic, strong) UIImageView * houseView;
 @property (nonatomic, strong) AVAudioPlayer * birdsPlayer;
+@property (nonatomic, strong) RSNoteView * noteView;
 
 @end
 
@@ -34,19 +36,26 @@
     _houseView.image = [UIImage imageNamed:@"house.png"];
     [self.view addSubview:_houseView];
     
-    RSNoteView * noteView = [[RSNoteView alloc] init];
-    [noteView setTitle:@"In a house on the hill \nthere lived a robot."];
-    [noteView setX:20.f y:20.f];
-    [self.view addSubview:noteView];
+    _noteView = [[RSNoteView alloc] init];
+    [_noteView setTitle:@"In a house on the hill \nthere lived a robot."];
+    [_noteView setX:20.f y:20.f];
+    [_noteView addLightRotation];
+    [self.view addSubview:_noteView];
     
     __block UIImageView * houseSky1 = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 20.f, 1516.f, 279.f)];
     houseSky1.image = [UIImage imageNamed:@"houseSky1"];
+    houseSky1.alpha = 0.f;
     [self.view insertSubview:houseSky1 belowSubview:_houseView];
     
     __block UIImageView * houseSky2 = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 20.f, 1516.f, 279.f)];
     houseSky2.image = [UIImage imageNamed:@"houseSky2"];
-    houseSky2.alpha = 0.9f;
+    houseSky2.alpha = 0.f;
     [self.view insertSubview:houseSky2 aboveSubview:_houseView];
+    
+    [UIView animateWithDuration:2.f animations:^{
+        houseSky1.alpha = 1.f;
+        houseSky2.alpha = 0.9f;
+    }];
     
     [UIView animateWithDuration:7.5f delay:0.f options:UIViewAnimationTransitionNone | UIViewAnimationOptionCurveLinear animations:^{
         CGRect frame = houseSky1.frame;
@@ -79,6 +88,7 @@
 
 - (void) viewWillDisappear:(BOOL)animated {
     [_birdsPlayer stop];
+    [_noteView removeFromSuperview];
 }
 
 - (void) addClouds {

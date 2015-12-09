@@ -11,7 +11,7 @@
 #import "RSHouseScene.h"
 #import "RSRobotCreationScene.h"
 
-@interface RSViewController ()<RSPageDelegate>
+@interface RSViewController ()<RSPageDelegate, UIPageViewControllerDelegate>
 
 @property (nonatomic, strong) UIPageViewController * pageViewController;
 @property (nonatomic, strong) RSPage * currentPage;
@@ -26,6 +26,7 @@
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
     for (UIGestureRecognizer *recognizer in self.pageViewController.gestureRecognizers) {
         if ( [recognizer isMemberOfClass:[UIPanGestureRecognizer class]] ) {
             recognizer.enabled = NO;
@@ -54,6 +55,13 @@
     return newPage;
 }
 
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
+    [_currentPage finishedLoading];
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
+}
+
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     [_currentPage shouldJumpToNextPage];
@@ -75,6 +83,7 @@
 
 - (void) shouldJumpToNextPage:(RSPage *)page {
     _currentPage = page;
+    _currentPage.delegate = self;
     [self.pageViewController setViewControllers:@[page] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
 

@@ -8,7 +8,6 @@
 
 #import "RSFlightScene.h"
 #import "RSCaveRevisitedScene.h"
-#import "AnimatedGIFImageSerialization.h"
 
 @interface RSFlightScene ()
 

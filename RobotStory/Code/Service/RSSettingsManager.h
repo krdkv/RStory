@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, RSSettingsKey) {
     kRobotLegs,
     kRobotName,
     kHaveAskedForMicPermission,
+    kShouldShowRobotCreationClue,
     kNumberOfKeys
 };
 

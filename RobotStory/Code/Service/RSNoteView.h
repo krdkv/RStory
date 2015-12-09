@@ -15,4 +15,6 @@
 
 - (void) setX:(CGFloat)x y:(CGFloat)y;
 
+- (void) addLightRotation;
+
 @end

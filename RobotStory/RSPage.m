@@ -39,6 +39,8 @@
     _curlLayer = nil;
 }
 
+- (void) finishedLoading {}
+
 - (void) displayPageCornerWithCurlName:(NSString*)curlName withDelay:(CGFloat)delay {
     
     if ( _nextPageLayer ) {
@@ -49,26 +51,14 @@
         
         CGFloat curlWidth = 408 / 4;
         CGFloat curlHeight = 364;
+
+        UIImageView * curlImageView = [[UIImageView alloc] initWithFrame:CGRectMake([RSStyle screenWidth]-curlWidth, [RSStyle screenHeight] - curlHeight/2, curlWidth, curlHeight/2)];
+        curlImageView.image = [UIImage imageNamed:@"curl.gif"];
+        [self.view addSubview:curlImageView];
         
-        UIImage * curlImage = [UIImage imageNamed:@"curl.png"];
-        CGImageRef curlImageRef = curlImage.CGImage;
-        _curlLayer = [MCSpriteLayer layerWithImage:curlImageRef sampleSize:CGSizeMake(curlWidth*2, curlHeight)];
-        _curlLayer.frame = CGRectMake([RSStyle screenWidth] - curlWidth, [RSStyle screenHeight] - curlHeight/2, curlWidth, curlHeight/2);
-        [self.view.layer addSublayer:_curlLayer];
-        
-        CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
-        anim.fromValue = @2;
-        anim.toValue = @3;
-        anim.duration = 0.1f;
-        anim.repeatCount = 1;
-        if ( delay == 0.f ) {
-//            anim.fromValue = @2;
-//            anim.toValue = @2;
-//            anim.duration = 0.f;
-//            anim.repeatCount = 0;
-        }
-        
-        [_curlLayer addAnimation:anim forKey:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            curlImageView.image = [UIImage imageNamed:@"curlStatic.png"];
+        });
         
         CALayer * mask = [CALayer layer];
         mask.contents = (id)[UIImage imageNamed:@"curlShape"].CGImage;

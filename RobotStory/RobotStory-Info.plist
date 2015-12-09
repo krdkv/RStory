@@ -40,6 +40,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Kohicle25.ttf</string>
+		<string>dyslexie.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

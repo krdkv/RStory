@@ -14,6 +14,9 @@
 #import "RSCaveAudioSimulator.h"
 #import "MCSpriteLayer.h"
 #import "RSWorkshopScene.h"
+#import "RSNoteView.h"
+#import "RSSettingsManager.h"
+#import "RSDreamBubble.h"
 
 @interface RSCaveEnterScene ()
 
@@ -30,6 +33,10 @@
 @property (nonatomic, strong) MCSpriteLayer * tribeMatches;
 
 @property (nonatomic, assign) BOOL canGoToNextPage;
+
+@property (nonatomic, strong) RSNoteView * kingsSpeech;
+@property (nonatomic, strong) RSNoteView * tribeSpeech;
+@property (nonatomic, assign) NSInteger dialogIndex;
 
 @end
 
@@ -79,6 +86,79 @@
         });
     }];
 }
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if ( _dialogIndex > 0 ) {
+        _dialogIndex++;
+        [self showNewDialog];
+    }
+}
+
+- (void) showNewDialog {
+    
+    if ( _dialogIndex == 0 ) {
+        return;
+    }
+    
+    if ( _kingsSpeech ) {
+        [self showKingMatches:NO];
+        [UIView animateWithDuration:0.5 animations:^{ _kingsSpeech.alpha = 0.f;
+        } completion:^(BOOL finished) {
+            [_kingsSpeech removeFromSuperview];
+            _kingsSpeech = nil;
+        }];
+    }
+    if ( _tribeSpeech ) {
+        [self showTribeMatches:NO];
+        [UIView animateWithDuration:0.5 animations:^{ _tribeSpeech.alpha = 0.f;
+        } completion:^(BOOL finished) {
+            [_tribeSpeech removeFromSuperview];
+            _tribeSpeech = nil;
+        }];
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString * title;
+        
+        switch (_dialogIndex) {
+            case 1: {
+                NSString * name = [RSSettingsManager objectForKey:kRobotName];
+                title = [NSString stringWithFormat:@"Finally... %@...\nyou're here", name];
+                _kingsSpeech = [[RSNoteView alloc] init];
+            } break;
+            case 2: {
+                title = @"You're here!\nYou're here!\nYou're here!";
+                _tribeSpeech = [[RSNoteView alloc] init];
+            } break;
+            case 3: {
+                title = @"You're ready to learn\nthe secret of flight!";
+                _kingsSpeech = [[RSNoteView alloc] init];
+            }break;
+                
+                
+            default:{
+                return;
+            }
+        }
+        
+        if ( _kingsSpeech ) {
+            [self showKingMatches:YES];
+            [_kingsSpeech setTitle:title];
+            [_kingsSpeech setDraggable:NO];
+            [_kingsSpeech setCenter:CGPointMake(200.f, 470.f)];
+            [self.view addSubview:_kingsSpeech];
+        }
+        
+        if ( _tribeSpeech ) {
+            [self showTribeMatches:YES];
+            [_tribeSpeech setTitle:title];
+            [_tribeSpeech setDraggable:NO];
+            [_tribeSpeech setCenter:CGPointMake(700.f, 470.f)];
+            [self.view addSubview:_tribeSpeech];
+        }
+    });
+}
+
 
 - (void) drawEyeBackground {
     UIImage * eyesBackgroundImage = [UIImage imageNamed:[NSString stringWithFormat:@"eyes%ld", (long)_eyesNumber]];
@@ -162,12 +242,11 @@
     }
     for ( int i = 0; i < eyesOrder.count; ++i ) {
         int eyeIndex = [eyesOrder[i] intValue];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self showEyesAtIndex:eyeIndex];
         });
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:1.f animations:^{
             _kingEyes.opacity = _tribeEyes1.opacity = _tribeEyes2.opacity = _tribeEyes3.opacity = 0.f;
             [_kingEyes removeFromSuperlayer];
@@ -175,16 +254,18 @@
             [_tribeEyes2 removeFromSuperlayer];
             [_tribeEyes3 removeFromSuperlayer];
         } completion:^(BOOL finished) {
-            [self showKingMatches:YES];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self showKingMatches:NO];
-                [self showTribeMatches:YES];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self showTribeMatches:NO];
-                    [self displayPageCornerWithCurlName:@"workshop_curl" withDelay:0.8f];
-                    _canGoToNextPage = YES;
-                });
-            });
+            _dialogIndex = 1;
+            [self showNewDialog];
+            
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self showKingMatches:NO];
+//                [self showTribeMatches:YES];
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    [self showTribeMatches:NO];
+//                    [self displayPageCornerWithCurlName:@"workshop_curl" withDelay:0.8f];
+//                    _canGoToNextPage = YES;
+//                });
+//            });
         }];
     });
 }
@@ -257,7 +338,7 @@
             anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
             anim.fromValue = @1;
             anim.toValue = @4;
-            anim.duration = 0.7f;
+            anim.duration = 0.5f;
             anim.repeatCount = 1;
             [_kingEyes addAnimation:anim forKey:nil];
             break;
@@ -270,7 +351,7 @@
             anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
             anim.fromValue = @1;
             anim.toValue = @4;
-            anim.duration = 0.7f;
+            anim.duration = 0.5f;
             anim.repeatCount = 1;
             [_tribeEyes1 addAnimation:anim forKey:nil];
             break;
@@ -283,7 +364,7 @@
             anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
             anim.fromValue = @1;
             anim.toValue = @4;
-            anim.duration = 0.7f;
+            anim.duration = 0.5f;
             anim.repeatCount = 1;
             [_tribeEyes2 addAnimation:anim forKey:nil];
             break;
@@ -296,7 +377,7 @@
             anim = [CABasicAnimation animationWithKeyPath:@"sampleIndex"];
             anim.fromValue = @1;
             anim.toValue = @4;
-            anim.duration = 0.7f;
+            anim.duration = 0.5f;
             anim.repeatCount = 1;
             [_tribeEyes3 addAnimation:anim forKey:nil];
             break;
@@ -321,7 +402,7 @@
 }
 
 - (RSPage*)nextPage {
-    return _canGoToNextPage ? [RSWorkshopScene new] : nil;
+    return /*_canGoToNextPage ? */[RSDreamBubble new] /*: nil*/;
 }
 
 @end

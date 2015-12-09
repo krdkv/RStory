@@ -18,7 +18,7 @@
 
 - (void) setTitle:(NSString*)title {
     
-    UIFont * font = [UIFont fontWithName:kRegularFontName size:50.f];
+    UIFont * font = [UIFont fontWithName:kRegularFontName size:25.f];
     
     CGSize estimatedSize = [title sizeWithAttributes:@{NSFontAttributeName:font}];
     
@@ -32,9 +32,8 @@
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];
     
-    [self enableDragging];
+//    [self enableDragging];
     [self addBackground];
-    [self addLightRotation];
 }
 
 - (void) addBackground {

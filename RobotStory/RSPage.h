@@ -28,6 +28,7 @@
 - (RSPage*) nextPage;
 - (RSPage*) previousPage;
 
+- (void) finishedLoading;
 - (void) shouldJumpToNextPage;
 - (void) shouldJumpToPreviousPage;
 
